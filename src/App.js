@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
+
+import { database } from './firebaseConfig';
 import logo from './logo.svg';
 
 import importContext from './utils';
 import Child from './child';
 
 class App extends Component {
-  state = {
-    name: 'Tony',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Tony',
+      data: null,
+      newData: '',
+    };
+
+    this.dataRef = null;
+  }
 
   static contextType = importContext;
 
@@ -21,11 +30,36 @@ class App extends Component {
   });
 
   componentDidMount() {
-    console.log('d', this.context);
+    this.dataRef = database.ref('/new/new');
+
+    // subscribe for firebase
+    // database
+    //   .ref()
+    //   .on('value', snapshot => this.setState({ data: snapshot.val() }));
+
+    this.dataRef.on('value', snapshot => {
+      console.log('snapshot', snapshot);
+      this.setState({ data: snapshot.val() });
+    });
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+
+    this.dataRef.push(this.state.newData);
+
+    // database
+    //   .ref()
+    //   .child('AMAZINGNEWDATE')
+    //   .push(this.state.newData); // create value and generate random key for this, always new!
+    // // .set(this.state.newData);  // create value in CHILD key, and always replays value
+  };
+
+  handleChange = event => this.setState({ newData: event.target.value });
+
   render() {
-    const { a, b } = this.context;
+    // const { a, b } = this.context;
+    const { data, newData } = this.state;
     return (
       <div className="App">
         <header className="App__header">
@@ -42,8 +76,13 @@ class App extends Component {
             Learn React
           </a>
           <Child />
-          {a + b}
+          <pre className="App_pre">{JSON.stringify(data, null, 2)}</pre>
         </header>
+
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" value={newData} onChange={this.handleChange} />
+          <input type="submit" />
+        </form>
       </div>
     );
   }

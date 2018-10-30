@@ -1,7 +1,6 @@
 @import 'abstracts/keyframes';
+@import 'abstracts/variables';
+
+@import 'base/base';
 
 @import 'components/app';
-
-.test-style {
-  color: #eeff00;
-}
