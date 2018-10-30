@@ -1,8 +1,21 @@
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(3rem);
+		transform: translateY(3rem);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translate(0);
+		transform: translate(0);
+	}
 }

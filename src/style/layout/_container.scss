@@ -1,0 +1,8 @@
+.container {
+	max-width: 100%;
+
+	&__sign-in {
+		display: flex;
+		flex-direction: column;
+	}
+}

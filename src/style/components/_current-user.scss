@@ -1,0 +1,18 @@
+.current-user {
+	display: flex;
+	padding: 1rem;
+	border: 1px solid $light-grey;
+
+	&__photo {
+		height: 20rem;
+		border-radius: 3px;
+	}
+
+	&__info-box {
+		padding: 1rem 3rem;
+	}
+
+	&__display-email {
+		font-size: $base-font-size;
+	}
+}

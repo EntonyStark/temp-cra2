@@ -1,0 +1,32 @@
+.new-restaurant {
+	display: flex;
+
+	&__input {
+		font-family: inherit;
+		color: inherit;
+		font-size: 1.5rem;
+		padding: 1.5rem 2rem;
+		border-radius: 2px;
+		background-color: rgba($color-white, 0.5);
+		border: 1px solid $light-grey-2;
+		// border-bottom: 3px solid;
+		width: 25%;
+		display: block;
+		margin-right: 2rem;
+		transition: all 0.3s;
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+			// border-bottom: 3px solid $light-blue;
+		}
+
+		// &:focus:invalid {
+		// 	border-bottom: 3px solid $color-secondary-dark;
+		// }
+
+		// &::-webkit-input-placeholder {
+		// 	color: $dark-grey;
+		// }
+	}
+}
