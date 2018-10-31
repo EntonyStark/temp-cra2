@@ -1,20 +1,32 @@
 .restaurants {
-	display: flex;
-	padding: 5rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5rem 0;
 }
 
 .restaurant {
-	padding: 3rem 5rem;
-	border: 1px solid $light-grey;
-	border-radius: 3px;
+  padding: 3rem 5rem;
+  border: 1px solid $light-grey;
+  border-radius: 3px;
 
-	&:not(:last-child) {
-		margin-right: 2rem;
-	}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-	&__name {
-		font-size: 1.2rem;
-		text-transform: uppercase;
-		color: $color-black;
-	}
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  &__name {
+    font-size: $base-font-size;
+    text-transform: uppercase;
+    color: $color-black;
+    text-align: center;
+  }
+
+  &__item {
+    &:not(:first-child) {
+      padding-top: 1rem;
+    }
+  }
 }
