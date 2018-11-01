@@ -9,8 +9,12 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "redux": "^4.0.1",
+    "redux-batched-actions": "^0.4.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,7 +30,8 @@
     ],
     "rules": {
       "linebreak-style": 0,
-      "class-methods-use-this": 0
+      "class-methods-use-this": 0,
+      "no-underscore-dangle": 0
     }
   },
   "browserslist": [

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { auth, database } from '../../firebaseConfig';
 
-import CurrentUser from '../../components/current-user';
+import Header from '../header';
 import NewRestaurant from '../../components/newRestaurant';
 import Restaurants from '../../components/restaurants';
 
@@ -42,9 +42,9 @@ export default class RestaurantPage extends Component {
 
     return (
       <div className="container">
+        <Header history={history} />
         {currentUser && (
           <Fragment>
-            <CurrentUser user={currentUser} history={history} />
             <div className="container__sign-in">
               <NewRestaurant />
               <Restaurants restaurants={restaurants} user={currentUser} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import SignIn from '../components/sign-in';
+import SignIn from '../containers/sign-in';
 import RestaurantPage from '../containers/restaurant-page';
 import SomePage from '../containers/some-page';
 
@@ -22,7 +22,7 @@ const routers = [
   },
   {
     exact: true,
-    path: '/some',
+    path: '/profile',
     component: SomePage,
     withHeader: true,
   },
