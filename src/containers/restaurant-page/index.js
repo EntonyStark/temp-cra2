@@ -1,57 +1,49 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { auth, database } from '../../firebaseConfig';
 
-import Header from '../header';
 import NewRestaurant from '../../components/newRestaurant';
 import Restaurants from '../../components/restaurants';
 
 export default class RestaurantPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: null,
-      restaurants: null,
-    };
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentUser: null,
+			restaurants: null,
+		};
 
-    this.restaurantRef = database.ref('/restaurants');
-  }
+		this.restaurantRef = database.ref('/restaurants');
+	}
 
-  static propTypes = {
-    history: PropTypes.object,
-  };
+	helper = snapshot => this.setState({ restaurants: snapshot.val() });
 
-  helper = snapshot => this.setState({ restaurants: snapshot.val() });
+	componentDidMount() {
+		auth.onAuthStateChanged(currentUser => {
+			// we are watching our status in fire base and if he change we set data
+			this.setState({ currentUser });
+			this.restaurantRef.on('value', this.helper);
+		});
+	}
 
-  componentDidMount() {
-    auth.onAuthStateChanged(currentUser => {
-      // we are watching our status in fire base and if he change we set data
-      this.setState({ currentUser });
-      this.restaurantRef.on('value', this.helper);
-    });
-  }
+	componentWillUnmount() {
+		this.restaurantRef.off('value', this.helper);
+	}
 
-  componentWillUnmount() {
-    this.restaurantRef.off('value', this.helper);
-  }
+	render() {
+		const { currentUser, restaurants } = this.state;
 
-  render() {
-    const { currentUser, restaurants } = this.state;
-    const { history } = this.props;
-
-    return (
-      <div className="container">
-        <Header history={history} />
-        {currentUser && (
-          <Fragment>
-            <div className="container__sign-in">
-              <NewRestaurant />
-              <Restaurants restaurants={restaurants} user={currentUser} />
-            </div>
-          </Fragment>
-        )}
-      </div>
-    );
-  }
+		return (
+			<div className="container">
+				{currentUser && (
+					<Fragment>
+						<div className="container__sign-in">
+							<NewRestaurant />
+							<Restaurants restaurants={restaurants} user={currentUser} />
+						</div>
+					</Fragment>
+				)}
+			</div>
+		);
+	}
 }

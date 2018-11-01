@@ -1,27 +1,21 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { enableBatching, batchDispatchMiddleware } from 'redux-batched-actions';
 import thunk from 'redux-thunk';
 
 // import logger from 'redux-logger';
 import { startListeningToAuthChange } from './actions/auth';
 import { startListeningForUsers } from './actions/users';
+import { startListeningForLang } from './actions/language';
 import initialState from './reducers/initial-state';
 import reducers from './reducers';
 
-const middleware = [thunk, batchDispatchMiddleware];
+const middleware = [thunk];
 
-const composeEnhancers =
-  process.env.NODE_ENV === 'development'
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  enableBatching(reducers),
-  initialState,
-  composeEnhancers(applyMiddleware(...middleware)),
-);
+const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(...middleware)));
 
 store.dispatch(startListeningToAuthChange()); // listener for auth
 store.dispatch(startListeningForUsers()); // listener for users
+store.dispatch(startListeningForLang()); // listener for lang
 
 export default store;
