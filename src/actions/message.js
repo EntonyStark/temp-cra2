@@ -22,7 +22,7 @@ export const createMessage = message => dispatch => {
   };
   messageRef.push(newMessage);
 
-  // dispatch(addMessage(message));
+  dispatch(addMessage(message));
 };
 
 export const destroyMessage = key => dispatch => {
@@ -30,4 +30,16 @@ export const destroyMessage = key => dispatch => {
     .child(key)
     .remove()
     .then(() => dispatch(removeMessage(key)));
+};
+
+export const startListeningForMessages = () => dispatch => {
+  messageRef.on('child_added', snapshot => {
+    const { key, val } = snapshot;
+    dispatch(addMessage({ key, val: val() }));
+  });
+
+  messageRef.on('child_removed', snapshot => {
+    const { key } = snapshot;
+    dispatch(removeMessage({ key }));
+  });
 };

@@ -1,6 +1,7 @@
 import SignIn from '../containers/sign-in';
 import RestaurantPage from '../containers/restaurant-page';
 import SomePage from '../containers/some-page';
+import NotFoundPage from '../components/notFound';
 
 const routers = [
   {
@@ -19,6 +20,9 @@ const routers = [
     path: '/profile',
     component: SomePage,
     withHeader: true,
+  },
+  {
+    component: NotFoundPage,
   },
 ];
 
