@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
 
 import Header from '../../../containers/header';
 import routers from '../../index';
 
-export default () => (
-  <BrowserRouter>
+export default ({ authStatus }) => {
+  if (authStatus === 'ANONYMOUS' && window.location.pathname !== '/') {
+    return <Redirect to="/" />;
+  }
+  return (
     <Switch>
       {routers.map((el, i) => {
         if (el.withHeader) {
@@ -32,5 +35,5 @@ export default () => (
         );
       })}
     </Switch>
-  </BrowserRouter>
-);
+  );
+};
