@@ -10,12 +10,45 @@ const chat = [
 ];
 
 export default class ChatPage extends Component {
+  state = {
+    text: '',
+  };
+
+  handleChange = e => this.setState({ text: e.target.value });
+
+  handleSubmit = () => {
+    const { text } = this.state;
+    const { user, createMessage } = this.props;
+
+    createMessage({ message: text, uid: user.uid });
+  };
+
   render() {
+    const { text } = this.state;
     return (
-      <div>
-        <div />
-        <input type="text" />
-        <button>submit</button>
+      <div className="chat-block">
+        <div className="chat-block__message-area">
+          {chat.map(el => (
+            <div className="chat-block__message" key={el.id}>
+              {el.text}
+            </div>
+          ))}
+        </div>
+        <div className="chat-block__input-area">
+          <input
+            onChange={this.handleChange}
+            placeholder="Say something"
+            type="text"
+            className="chat-block__input"
+          />
+          <button
+            onClick={this.handleSubmit}
+            disabled={text === ''}
+            className="button button--white"
+          >
+            submit
+          </button>
+        </div>
       </div>
     );
   }

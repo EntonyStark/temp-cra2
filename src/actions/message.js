@@ -14,12 +14,14 @@ const removeMessage = payload => ({
   payload,
 });
 
-export const createMessage = message => dispatch => {
+export const createMessage = ({ message, uid }) => dispatch => {
+  console.log('message', message);
   const newMessage = {
-    content: message.content,
-    uid: message.uid,
+    content: message,
+    uid,
     timeStamp: Date.now(),
   };
+  console.log('newMessage', newMessage);
   messageRef.push(newMessage);
 
   dispatch(addMessage(message));
@@ -34,8 +36,8 @@ export const destroyMessage = key => dispatch => {
 
 export const startListeningForMessages = () => dispatch => {
   messageRef.on('child_added', snapshot => {
-    const { key, val } = snapshot;
-    dispatch(addMessage({ key, val: val() }));
+    const { key } = snapshot;
+    dispatch(addMessage({ key, val: snapshot.val() }));
   });
 
   messageRef.on('child_removed', snapshot => {

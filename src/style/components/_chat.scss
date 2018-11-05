@@ -1,0 +1,51 @@
+.chat-block {
+  padding: 1rem;
+  border: 1px solid $light-grey;
+  border-radius: 3px;
+  height: max-content;
+
+  &__message-area {
+    border-bottom: 1px solid $light-grey;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message {
+    padding: 0.5rem;
+    width: 80%;
+    word-wrap: break-word;
+
+    border: 1px solid $light-grey;
+    border-radius: 1rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__input-area {
+    display: flex;
+  }
+
+  &__input {
+    font-family: inherit;
+    color: inherit;
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba($color-white, 0.5);
+    border: 1px solid $light-grey-2;
+    width: 60%;
+    display: block;
+    margin-right: 2rem;
+    transition: all 0.3s;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+    }
+  }
+}
