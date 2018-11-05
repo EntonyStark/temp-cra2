@@ -7,6 +7,7 @@ import { createMessage } from '../../actions/message';
 const mapStateToProps = state => {
   console.log(state);
   return {
+    messages: state.messages.data,
     user: state.auth,
     literals: state.i18nReducer.literals.header,
   };
