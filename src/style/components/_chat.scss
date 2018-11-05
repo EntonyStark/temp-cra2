@@ -1,51 +1,72 @@
 .chat-block {
-  padding: 1rem;
-  border: 1px solid $light-grey;
-  border-radius: 3px;
-  height: max-content;
+	padding: 1rem;
+	border: 1px solid $light-grey;
+	border-radius: 3px;
+	height: max-content;
+	max-width: 28%;
+	background: #eee;
 
-  &__message-area {
-    border-bottom: 1px solid $light-grey;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+	&__message-area {
+		border-bottom: 1px solid $light-grey;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
 
-    display: flex;
-    flex-direction: column;
-  }
+		display: flex;
+		flex-direction: column;
+		max-height: 30rem;
+		overflow-y: scroll;
+	}
 
-  &__message {
-    padding: 0.5rem;
-    width: 80%;
-    word-wrap: break-word;
+	&__message-time {
+		position: absolute;
+		left: -3.5rem;
+		top: 50%;
+		transform: translate(0, -50%);
 
-    border: 1px solid $light-grey;
-    border-radius: 1rem;
+		&--self {
+			left: 103%;
+		}
+	}
 
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-  }
+	&__message {
+		padding: 0.5rem 0.5rem 0.5rem 1rem;
+		width: 80%;
+		word-wrap: break-word;
+		position: relative;
+		background: papayawhip;
 
-  &__input-area {
-    display: flex;
-  }
+		border: 1px solid $light-grey;
+		border-radius: 1rem;
 
-  &__input {
-    font-family: inherit;
-    color: inherit;
-    font-size: 1.5rem;
-    padding: 1.5rem 2rem;
-    border-radius: 2px;
-    background-color: rgba($color-white, 0.5);
-    border: 1px solid $light-grey-2;
-    width: 60%;
-    display: block;
-    margin-right: 2rem;
-    transition: all 0.3s;
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
+		&--self {
+			align-self: flex-end;
+			background: #fff;
+		}
+	}
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
-    }
-  }
+	&__input-area {
+		display: flex;
+	}
+
+	&__input {
+		font-family: inherit;
+		color: inherit;
+		font-size: 1.5rem;
+		padding: 1.5rem 2rem;
+		border-radius: 2px;
+		background-color: rgba($color-white, 0.5);
+		border: 1px solid $light-grey-2;
+		width: 60%;
+		display: block;
+		margin-right: 2rem;
+		transition: all 0.3s;
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+		}
+	}
 }
