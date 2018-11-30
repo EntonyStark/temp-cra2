@@ -6,6 +6,8 @@ export default class ChatPage extends Component {
 	static propTypes = {
 		messages: PropTypes.array,
 		user: PropTypes.object,
+		destroyMessage: PropTypes.func,
+		createMessage: PropTypes.func,
 	};
 
 	state = {
@@ -23,8 +25,7 @@ export default class ChatPage extends Component {
 
 	render() {
 		const { text } = this.state;
-		const { messages, user } = this.props;
-		console.log('dsf', this.props);
+		const { messages, user, destroyMessage } = this.props;
 		return (
 			<div className="chat-block">
 				<div className="chat-block__message-area">
@@ -42,7 +43,12 @@ export default class ChatPage extends Component {
 								}>
 								{moment(el.timeStamp).format('HH:mm')}
 							</div>
-							{el.content}
+							{el.content}{' '}
+							{el.uid === user.uid && (
+								<span onClick={destroyMessage.bind(null, el.messageId)} className="chat-block__remove-button">
+									x
+								</span>
+							)}
 						</div>
 					))}
 				</div>

@@ -22,7 +22,6 @@ class Header extends Component {
 
 	render() {
 		const { user, setLang, literals } = this.props;
-
 		return (
 			<header className="current-user u-margin-bottom-medium">
 				<div className="current-user__logo-box">

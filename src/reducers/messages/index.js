@@ -8,8 +8,8 @@ export default (state = initialState.messages, { type, payload }) => {
 			return { ...state, data: state.data.concat(newMessage) };
 		}
 		case types.REMOVE_MESSAGE: {
-			console.log('REMOVE_MESSAGE', payload);
-			return state;
+			const data = state.data.filter(el => el.messageId !== payload);
+			return { ...state, data };
 		}
 		default:
 			return state;

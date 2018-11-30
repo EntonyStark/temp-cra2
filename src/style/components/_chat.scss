@@ -69,4 +69,15 @@
 			box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
 		}
 	}
+
+	&__remove-button {
+		position: absolute;
+		top: 0.2rem;
+		right: 0.5rem;
+		padding: 0 0.3rem;
+		border-radius: 3px;
+		cursor: pointer;
+		background-color: $light-red;
+		color: $color-white;
+	}
 }

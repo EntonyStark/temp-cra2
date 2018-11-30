@@ -13,11 +13,7 @@ const middleware = [thunk];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  reducers,
-  initialState,
-  composeEnhancers(applyMiddleware(...middleware)),
-);
+const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(...middleware)));
 
 store.dispatch(startListeningToAuthChange()); // listener for auth
 store.dispatch(startListeningForUsers()); // listener for users
